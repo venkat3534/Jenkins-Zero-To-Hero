@@ -16,6 +16,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 sh '''
+                export AWS_SHARED_CREDENTIALS_FILE=/home/ubuntu/.aws/credentials
                 ansible-playbook Ansible-aws-s3.yml
                 '''
             }
