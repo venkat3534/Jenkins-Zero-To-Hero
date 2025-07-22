@@ -1,0 +1,19 @@
+---
+- name: Create S3 bucket
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    bucket_name: demo-ansible-bucket-{{ 9999 | random }}
+
+  tasks:
+    - name: Create S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        state: present
+        region: ap-south-1
+
+    - name: Show bucket name
+      debug:
+        msg: "S3 bucket created: {{ bucket_name }}"
